@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block titulo %}
+    <title>Modelo</title>
+    {% endblock %}
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    {% block menu %}
+    <div class="bg-secondary">
+        Codigo do meu menu
+    </div>
+    {% endblock %}
+
+    {% block destaque %}
+    <div class="bg-light">
+        Figuras de Destaque
+    </div>
+    {% endblock %}
+
+    {% block conteudo %}
+    <div class="container"> 
+        <h2 style="font-style: italic;">Template de Modelo</h2>
+
+        <p>Conteúdo do Site:</p>
+
+        <img src="{% static 'img/Pedro.jpeg' %}" width=150 alt="">
+    </div>
+    {% endblock %}
+
+    {% block rodape %}
+    <div class="bg-secondary">
+        Rodapé
+    </div>
+    {% endblock %}
+
+
+
+    <script> src = "{% static 'js/jquery-3.5.1.min.js' %}"</script>
+    <script> src = "{% static 'js/popper.js' %}"</script>
+    <script> src = "{% static 'js/bootstrap.min.js' %}"</script>
+</body>
+</html>

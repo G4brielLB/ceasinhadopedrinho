@@ -1,0 +1,28 @@
+{%extends 'modelopro.html'%}
+
+{% load static %}
+
+{%block titulo%}
+<title>Sobre</title>
+{%endblock%}
+
+
+
+{%block principal%}
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-5">Bem vindo(a) a Ceasinha do Pedro!</h1>
+        <hr>
+        <div class=row>            
+            <div class="col-md-5">
+        <p><img src="{% static 'img/Pedro.jpeg' %}" width = 350 alt="">.</p>
+        <p><a class="btn btn-primary btn-lg" href="{% url 'index' %}" role="button">Começar lista &raquo;</a></p> </div>
+        <div class="col-md-5">
+            <h3 style="text-align: justify; font-family:'Times New Roman', Times, serif; color:rgb(48, 70, 13)">Com o intuito de deixar as compras da Ceasa mais fáceis, este site está sendo criado e desenvolvido, para colocarem as listas e no final gerar apenas uma única lista. Qualquer problema, contactar pelo número (86) 981842869, a Ceasinha do Pedrinho agradece! </h3></div>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+{%block colunas%}
+{%endblock%}

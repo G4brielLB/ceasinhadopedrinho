@@ -1,0 +1,54 @@
+{% extends 'modelopro.html' %}
+
+{% load static %}
+
+{%block titulo%}
+<title>Página Inicial</title>
+{% endblock %}
+
+
+{%block principal%}
+        <h1 class="display-3">Olá família!</h1>
+        <p style="font-size: 20px;">Um simples site para facilitar a fazer as listas da Ceasa!</p>
+        <p>
+            <img src="{% static 'img/Pedro.jpeg' %}" width=200 alt=""></p>
+        {% if request.user.is_authenticated %}
+        <p><a class="btn btn-primary btn-lg" href="{% url 'cadastrar-campo' %}" role="button">Iniciar Lista &raquo;</a></p>
+        {% else %}
+        <p><a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Iniciar Lista &raquo;</a></p>
+        {%endif%}
+    </div>
+</div>
+{% endblock %}
+
+{%block colunas%}
+        <div class="col-md-3">
+            <h2>Edson</h2>
+            <p><img src="{% static 'img/Edson.jpeg' %}" width="200" alt=""> </p>
+            <p><a class="btn btn-secondary" href="#" role="button">Editar Lista &raquo;</a></p>
+        </div>
+
+        <div class="col-md-3">
+            <h2>Isabela</h2>
+            <p><img src="{% static 'img/Isabela.jpeg' %}" width="200" alt=""> </p>
+            <p><a class="btn btn-secondary" href="#" role="button">Editar Lista &raquo;</a></p>
+        </div>
+        <div class="col-md-3">
+            <h2>Martha</h2>
+            <p><img src="{% static 'img/Martha.jpeg' %}" width="200" alt=""></p>
+            <p><a class="btn btn-secondary" href="#" role="button">Editar Lista &raquo;</a></p>
+        </div>
+        <div class="col-md-3">
+            <h2>Nieta</h2>
+            <p><img src="{% static 'img/Nieta.jpeg' %}" width="200" alt=""></p>
+            <p><a class="btn btn-secondary" href="#" role="button">Editar Lista &raquo;</a></p>
+        </div>
+    </div>
+
+    <hr>
+
+</div> <!-- /container -->
+{%endblock%}
+
+
+

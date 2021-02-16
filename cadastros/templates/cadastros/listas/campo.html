@@ -1,0 +1,44 @@
+{% extends "paginas/templates/modelopro.html" %}
+
+{% load static}
+
+{% block titulo %}
+<title>Listas - Campo</title>
+{%endblock%}
+
+{% block principal %}
+<h3>Lista de Campos registrados</h3>
+
+<a href="{% url 'cadastrar-campo' %}" class="btn btn-primary btn-sm">Adicionar Lista</a>
+<hr>
+<table class="table table-striped">
+    <tr>
+        <th>Nome</th>
+        <th>Data</th>
+        <th>Usuário</th>
+        <th>Opções</th>
+    </tr>
+
+    {% for campo in object_list %}
+    <tr>
+        <td>{{ campo.nome }}</td>
+        <td>{{ campo.data }}</td>
+        <td>{{ campo.usuario }}</td>
+        <td>
+            <a href="{% url 'editar-campo' campo.pk %}" class="btn btn-warning btn-sm" title="Editar">Editar</a>
+            <a href="{% url 'excluir-campo' campo.pk %}" class="btn btn-danger btn-sm" title="Editar">Excluir</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3">Nenhum campo registrado</td>
+        
+    </tr>
+
+    {% endfor %}
+
+
+</table>
+{%endblock%}
+{%block colunas%}
+{%endblock%}

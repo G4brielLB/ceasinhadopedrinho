@@ -1,0 +1,46 @@
+{% extends "paginas/templates/modelopro.html" %}
+
+{% load static}
+
+{% block titulo %}
+<title>Listas - Verduras</title>
+{%endblock%}
+
+{% block principal %}
+<h3>Lista de Verduras registrados</h3>
+
+<a href="#" class="btn btn-primary btn-sm">Adicionar Lista</a>
+<hr>
+<table class="table table-striped">
+    <tr>
+        <th>Nome</th>
+        <th>Data</th>
+        <th>Verduras</th>
+        <th>Quantidade</th>
+        <th>Opções</th>
+    </tr>
+
+    {% for verduras in object_list %}
+    <tr>
+        <td>{{ verduras.usuario }}</td>
+        <td>{{ verduras.data }}</td>
+        <td>{{ verduras.alface }}</td>
+        <td>
+        <td></td>
+        <td><a href="#" class="btn btn-warning btn-sm" title="Editar">Editar</a>
+        <a href="#" class="btn btn-danger btn-sm" title="Editar">Excluir</a></td>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3">Nenhuma lista registrada</td>
+
+    </tr>
+
+    {% endfor %}
+
+
+</table>
+{%endblock%}
+{%block colunas%}
+{%endblock%}
