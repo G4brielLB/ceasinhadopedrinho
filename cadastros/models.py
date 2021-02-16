@@ -16,18 +16,6 @@ class Campo(models.Model):
     def __str__(self):
         return ("{} ({})".format(self.nome, self.data))
 
-class Atividade(models.Model):
-    numero = models.IntegerField(verbose_name='Número')
-    descricao = models.CharField(max_length=150, verbose_name='Descrição')
-    pontos = models.DecimalField(decimal_places=1, max_digits=4)
-    detalhes = models.CharField(max_length=100)
-    campo = models.ForeignKey(Campo, on_delete=models.PROTECT)
-
-
-    def __str__(self):
-        return(f"{self.numero} - {self.descricao} ({self.campo})")
-
-
 class Verdura(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.PROTECT)
     data = models.DateField(default=date.today())
@@ -46,6 +34,7 @@ class Verdura(models.Model):
     def __str__(self):
         return(f"Lista {self.usuario} {self.data}")
 
+# Só um model teste, praticamente igual a model Verdura
 class CeasaModel(models.Model):
     abacate = models.IntegerField(default=0)
     abacaxi = models.IntegerField(default=0)

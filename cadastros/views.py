@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Verdura
 from .forms import VerduraForm
-from .models import Campo, Atividade, Verdura, CeasaModel
+from .models import Campo, Verdura, CeasaModel
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import GroupRequiredMixin
@@ -42,13 +42,6 @@ class CampoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
 
         #ceasa['form'] = form
         #return render(request, 'ceasa.html', ceasa)
-
-class AtividadeCreate(LoginRequiredMixin, CreateView):
-    login_url = reverse_lazy('login')
-    model = Atividade
-    fields = ['numero', 'descricao', 'pontos', 'detalhes', 'campo']
-    template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('listar-atividades')
 
 class VerduraCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     group_required = u'Família'
@@ -91,13 +84,6 @@ class CampoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-campos')
 
-class AtividadeUpdate(LoginRequiredMixin, UpdateView):
-    login_url = reverse_lazy('login')
-    model = Atividade
-    fields = ['numero', 'descricao', 'pontos', 'detalhes', 'campo']
-    template_name = 'cadastros.form.html'
-    reverse_lazy('index')
-
 ############# DELETE ###############
 
 class CampoDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
@@ -106,12 +92,6 @@ class CampoDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Campo
     template_name = 'cadastros/form-excluir.html'
     success_url = reverse_lazy('listar-campos')
-
-class AtividadeDelete(LoginRequiredMixin, DeleteView):
-    login_url = reverse_lazy('login')
-    model = Atividade
-    template_name = 'cadastros/form-excluir.html'
-    success_url = reverse_lazy('index')
 
 ############# LISTA ###############
 
@@ -125,10 +105,6 @@ class CampoList(LoginRequiredMixin, ListView):
         self.object_list = Campo.objects.filter(usuario=self.request.user)
         return self.object_list
 
-class AtividadeList(LoginRequiredMixin, ListView):
-    login_url = reverse_lazy('login')
-    model = Atividade
-    template_name = 'cadastros/listas/atividade.html'
 
 class VerduraList(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
