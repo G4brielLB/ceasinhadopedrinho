@@ -9,8 +9,16 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import GroupRequiredMixin
 
-vegetables = {'Abacates': 1, 'Abacaxis': 1, 'Abobrinhas': 1,
-              'Alfaces': 1, 'Alhos Porós': 1, 'Bananas': 1}
+vegetables = {'abacate': 1, 'abacaxi': 1, 'abobrinha': 1,
+              'alface': 1, 'alho_poro': 1, 'batata': 1,
+              'batata_doce': 1, 'brocolis': 1, 'cabeca_de_alho': 1, 'cebola': 1,
+              'cebola_roxa': 1, 'cenoura': 1, 'coco': 1,
+              'cheiro_verde': 1, 'chuchu': 1, 'couve_flor': 1,
+              'couve_folha': 1, 'banana': 1,
+              'espinafre': 1, 'laranja': 1, 'maca': 1,
+              'macaxeira': 1, 'mamao': 1, 'maracuja': 1,
+              'pepino': 1, 'pimenta_de_cheiro': 1, 'pimentao': 1, 'tangerina': 1, 'tomate': 1, 'rucula': 1, 'quiabo': 1}
+
 
 # Create your views here.
 class CampoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
@@ -30,29 +38,29 @@ class CampoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
         # Depois do super o objeto foi criado
         return url
 
-#class CeasaCreate(FormView):
-    #template_name = 'cadastros/ceasa.html'
-    #form_class = CeasaForm
-    #success_url = reverse_lazy('index')
-    #def ceasa(self, request):
-        #ceasa = {}
-        #form = CeasaForm(request.POST or None)
-        #if form.is_valid():
-            #form.save
+class CeasaCreate(FormView):
+    template_name = 'cadastros/ceasa.html'
+    form_class = VerduraForm
+    success_url = reverse_lazy('index')
+    def ceasa(self, request):
+        ceasa = {}
+        form = VerduraForm(request.POST or None)
+        if form.is_valid():
+            form.save
 
-        #ceasa['form'] = form
-        #return render(request, 'ceasa.html', ceasa)
+        ceasa['form'] = form
+        return render(request, 'ceasa.html', ceasa)
 
 class VerduraCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     group_required = u'Família'
     login_url = reverse_lazy('login')
-    vegetables = {'Abacates': 1, 'Abacaxis': 1, 'Abobrinhas': 1,
-               'Alfaces': 1, 'Alhos Porós': 1, 'Bananas': 1}
     model = Verdura
-    fields = ['abacate', 'abacaxi', 'abobrinha',
-           'alface', 'alho_poro', 'banana']
+    a = []
+    for v in vegetables.keys():
+        a.append(v)
+    fields = a.copy()
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('listar-campos')
+    success_url = reverse_lazy('listar-verduras')
 
     def form_valid(self, form):
 
@@ -69,7 +77,7 @@ class VerduraCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
             form.save
 
         ceasa['form'] = form
-        return render(request, 'ceasa.html', ceasa)
+        #return render(request, 'ceasa.html', ceasa)
 
 
 
@@ -84,6 +92,18 @@ class CampoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-campos')
 
+
+class VerduraUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    group_required = u'Família'
+    login_url = reverse_lazy('login')
+    model = Verdura
+    a = []
+    for v in vegetables.keys():
+        a.append(v)
+    fields = a.copy()    
+    template_name = 'cadastros/form.html'
+    success_url = reverse_lazy('listar-verduras')
+
 ############# DELETE ###############
 
 class CampoDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
@@ -92,6 +112,13 @@ class CampoDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Campo
     template_name = 'cadastros/form-excluir.html'
     success_url = reverse_lazy('listar-campos')
+
+class VerduraDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
+    group_required = u'Família'
+    login_url = reverse_lazy('login')
+    model = Verdura
+    template_name = 'cadastros/form-excluir.html'
+    success_url = reverse_lazy('listar-verduras')
 
 ############# LISTA ###############
 
@@ -111,6 +138,17 @@ class VerduraList(LoginRequiredMixin, ListView):
     model = Verdura
     template_name = 'cadastros/listas/verduras.html'
 
+
+    def get_queryset(self): 
+
+        self.object_list = Verdura.objects.filter(usuario=self.request.user)
+        return self.object_list
+
+
+class VerduraTotalList(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('login')
+    model = Verdura
+    template_name = 'cadastros/listas/verduras.html'
 
 
 

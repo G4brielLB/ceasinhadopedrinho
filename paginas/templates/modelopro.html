@@ -59,7 +59,7 @@ awesome/4.7.0/css/font-awesome.min.css">
           </li>
           {% if request.user.is_authenticated%}
           <li class="nav-item active">
-            <a class="nav-link" href="{% url 'listar-campos' %}" style="font-family: sans-serif;">
+            <a class="nav-link" href="{% url 'listar-verduras-total' %}" style="font-family: sans-serif;">
               Listas
             </a>
           </li>
@@ -80,7 +80,7 @@ awesome/4.7.0/css/font-awesome.min.css">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 Meus dados
               </a>
-              <a class="dropdown-item " href="#">
+              <a class="dropdown-item " href="{% url 'listar-verduras' %}">
                 <i class="fa fa-list" aria-hidden="true"></i>
                 Minhas Listas</a>
               <div class="dropdown-divider"></div>

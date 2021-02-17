@@ -7,7 +7,125 @@
 {%endblock%}
 
 {% block principal %}
-<h3>Lista de Verduras registrados</h3>
+
+<h2 style="font-weight: bold; color: rgb(12, 104, 12);">Lista de Verduras registrados</h2>
+<hr>
+{% for verdura in object_list %}
+<table class="table table-striped">
+    <h4 >Lista de {{verdura.usuario}} ({{verdura.data}}) 
+        <a href="{% url 'editar-verduras' verdura.pk %}" class="btn btn-warning btn-sm" title="Editar">Editar</a>
+        <a href="{% url 'excluir-verduras' verdura.pk %}" class="btn btn-danger btn-sm" title="Excluir">Excluir</a>
+    </h4>
+    
+    
+    <tr>
+        <th>Abacate: {{ verdura.abacate }}</th>
+    </tr>
+    <tr>
+        <th>Abacaxi: {{ verdura.abacaxi }}</th>
+    </tr>
+    <tr>
+        <th>Abobrinha: {{ verdura.abobrinha }}</th>
+    </tr>
+    <tr>
+        <th>Alface: {{ verdura.alface }}</th>
+    </tr>
+    <tr>
+        <th>Alho Poró: {{ verdura.alho_poro }}</th>
+    </tr>
+    <tr>
+        <th>Batata: {{ verdura.batata }} Kg</th>
+    </tr>
+    <tr>
+        <th>Batata Doce: {{ verdura.batata_doce }}</th>
+    </tr>
+    <tr>
+        <th>Brócolis: {{ verdura.brocolis }}</th>
+    </tr>
+    <tr>
+        <th>Cabeça de Alho: {{ verdura.cabeca_de_alho }}</th>
+    </tr>
+    <tr>
+        <th>Cebola: {{ verdura.cebola}} Kg</th>
+    </tr>
+    <tr>
+        <th>Cebola Roxa {{ verdura.cebola_roxa }}</th>
+    </tr>
+    <tr>
+        <th>Cenoura: {{ verdura.cenoura }} Kg</th>
+    </tr>
+    <tr>
+        <th>Côco: {{ verdura.coco }}</th>
+    </tr>
+    <tr>
+        <th>Cheiro Verde: {{ verdura.cheiro_verde }}</th>
+    </tr>
+    <tr>
+        <th>Chuchu: {{ verdura.chuchu }}</th>
+    </tr>
+    <tr>
+        <th>Couve Flor: {{ verdura.couve_flor }}</th>
+    </tr>
+    <tr>
+        <th>Couve Folha: {{ verdura.couve_folha }}</th>
+    </tr>
+    <tr>
+        <th>Dúzias de Banana: {{ verdura.banana }}</th>
+    </tr>
+    <tr>
+        <th>Espinafre: {{ verdura.espinafre }}</th>
+    </tr>
+    <tr>
+        <th>Laranja: {{ verdura.laranja }}</th>
+    </tr>
+    <tr>
+        <th>Maçãs {{ verdura.maca }}</th>
+    </tr>
+    <tr>
+        <th>Macaxeira: {{ verdura.macaxeira }}</th>
+    </tr>
+    <tr>
+        <th>Mamão: {{ verdura.mamao }}</th>
+    </tr>
+    <tr>
+        <th>Maracujá: {{ verdura.maracuja }}</th>
+    </tr>
+    <tr>
+        <th>Pepino: {{ verdura.pepino }}</th>
+    </tr>
+    <tr>
+        <th>Pimenta de Cheiro: {{ verdura.pimenta_de_cheiro }}</th>
+    </tr>
+    <tr>
+        <th>Pimentão: {{ verdura.pimentao }}</th>
+    </tr>
+    <tr>
+        <th>Tangerina: {{ verdura.tangerina }}</th>
+    </tr>
+    <tr>
+        <th>Tomate: {{ verdura.tomate }} Kg</th>
+    </tr>
+    <tr>
+        <th>Rúcula: {{ verdura.rucula }}</th>
+    </tr>
+    <tr>
+        <th>Quiabo: {{ verdura.quiabo }}</th>
+    </tr>
+
+
+</table>
+<hr>
+
+{% empty %}
+<tr>
+    <td colspan="3">Nenhuma lista registrada</td>
+
+    {% endfor %}
 {%endblock%}
+
 {%block colunas%}
+
+
+
+
 {%endblock%}
