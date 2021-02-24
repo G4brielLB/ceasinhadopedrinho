@@ -4,7 +4,7 @@ from django.urls import path
 from .views import CampoCreate, VerduraCreate
 from .views import CampoUpdate, VerduraUpdate
 from .views import CampoDelete, VerduraDelete
-from .views import CampoList, VerduraList, VerduraTotalList
+from .views import CampoList, VerduraList, VerduraTotalList, FinalList
 
 
 #Tem que ser urlpatterns porque é padrão do Django
@@ -24,7 +24,8 @@ urlpatterns = [
 
     path('listar/campos/', CampoList.as_view(), name='listar-campos'),
     path('listar/verduras/user', VerduraList.as_view(), name='listar-verduras'),
-    path('listar/verduras/', VerduraTotalList.as_view(), name='listar-verduras-total')
+    path('listar/verduras/', VerduraTotalList.as_view(), name='listar-verduras-total'),
+    path('listar/verduras/final', FinalList.as_view(), name='listas-verduras-final'),
 
 
     #path('endereço/', MinhaView.as_view(), name='nome-da-url')

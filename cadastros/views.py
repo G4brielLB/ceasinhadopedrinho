@@ -2,23 +2,24 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.views.generic.list import ListView
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Verdura
+from .models import Campo, Verdura, to_dict, FinalModel
 from .forms import VerduraForm
-from .models import Campo, Verdura, CeasaModel
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import GroupRequiredMixin
+from datetime import date
 
-vegetables = {'abacate': 1, 'abacaxi': 1, 'abobrinha': 1,
-              'alface': 1, 'alho_poro': 1, 'batata': 1,
-              'batata_doce': 1, 'brocolis': 1, 'cabeca_de_alho': 1, 'cebola': 1,
-              'cebola_roxa': 1, 'cenoura': 1, 'coco': 1,
-              'cheiro_verde': 1, 'chuchu': 1, 'couve_flor': 1,
-              'couve_folha': 1, 'banana': 1,
-              'espinafre': 1, 'laranja': 1, 'maca': 1,
-              'macaxeira': 1, 'mamao': 1, 'maracuja': 1,
-              'pepino': 1, 'pimenta_de_cheiro': 1, 'pimentao': 1, 'tangerina': 1, 'tomate': 1, 'rucula': 1, 'quiabo': 1}
 
+vegetables = {'abacate': 0, 'abacaxi': 0, 'abobrinha': 0,
+              'alface': 0, 'alho_poro': 0, 'batata': 0,
+              'batata_doce': 0, 'brocolis': 0,
+              'cabeca_de_alho': 0, 'cebola': 0,
+              'cebola_roxa': 0, 'cenoura': 0, 'coco': 0,
+              'cheiro_verde': 0, 'chuchu': 0, 'couve_flor': 0,
+              'couve_folha': 0, 'banana': 0,
+              'espinafre': 0, 'laranja': 0, 'maca': 0,
+              'macaxeira': 0, 'mamao': 0, 'maracuja': 0,
+              'pepino': 0, 'pimenta_de_cheiro': 0, 'pimentao': 0, 'tangerina': 0, 'tomate': 0, 'rucula': 0, 'quiabo': 0}
 
 # Create your views here.
 class CampoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
@@ -46,7 +47,7 @@ class CeasaCreate(FormView):
         ceasa = {}
         form = VerduraForm(request.POST or None)
         if form.is_valid():
-            form.save
+            form.save()
 
         ceasa['form'] = form
         return render(request, 'ceasa.html', ceasa)
@@ -72,12 +73,12 @@ class VerduraCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
         return url
     def ceasa(self, request):
         ceasa = {}
-        form = VerduraForm(request.POST or None)
+        form = VerduraForm(request.POST)
         if form.is_valid():
-            form.save
+            form.save()
 
         ceasa['form'] = form
-        #return render(request, 'ceasa.html', ceasa)
+        #return render(request, 'ceasa.html', ceasa)'''
 
 
 
@@ -138,12 +139,10 @@ class VerduraList(LoginRequiredMixin, ListView):
     model = Verdura
     template_name = 'cadastros/listas/verduras.html'
 
-
     def get_queryset(self): 
 
         self.object_list = Verdura.objects.filter(usuario=self.request.user)
         return self.object_list
-
 
 class VerduraTotalList(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
@@ -151,4 +150,19 @@ class VerduraTotalList(LoginRequiredMixin, ListView):
     template_name = 'cadastros/listas/verduras.html'
 
 
+    def get_queryset(self):
 
+        self.object_list = Verdura.objects.all()
+        return self.object_list
+
+
+
+
+class FinalList(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('login')
+    model = FinalModel
+    template_name = 'cadastros/listas/final.html'
+
+    def get_queryset(self):          
+        self.object_list = FinalModel.verdurafinal
+        return self.object_list

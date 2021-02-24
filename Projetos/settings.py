@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'cadastros.apps.CadastrosConfig',
     'usuarios.apps.UsuariosConfig',
     'crispy_forms',
+    'rest_framework',
     #'nomedoapp.apps.NomedoappConfig',
 ]
 

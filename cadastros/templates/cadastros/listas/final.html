@@ -1,0 +1,33 @@
+{% extends "paginas/templates/modelopro.html" %}
+
+{% load static}
+
+{% block titulo %}
+<title>Listas - Final</title>
+{%endblock%}
+
+{% block principal %}
+
+<h2 style="font-weight: bold; color: rgb(12, 104, 12);">Listas de Verduras - FINAL</h2>
+<hr>
+{% for nomes, vegetables in object_list.items %}
+<table class="table table-striped">
+    <tr>
+        <th>{{nomes}}: {{ vegetables }}</th>
+    </tr>
+    
+    
+
+
+    
+</table>
+{% empty %}
+<tr>
+    <td colspan="3">Nenhuma lista registrada</td>
+    
+{% endfor %}
+{%endblock%}
+    
+{%block colunas%} 
+    
+{%endblock%}

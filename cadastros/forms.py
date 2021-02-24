@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django import forms
 from django.db import models
 from django.contrib.auth.models import User
-from .models import Verdura, CeasaModel
+from .models import Verdura
 
 vegetables = {'abacate': 1, 'abacaxi': 1, 'abobrinha': 1,
               'alface': 1, 'alho_poro': 1, 'batata': 1,
@@ -21,3 +21,4 @@ class VerduraForm(forms.ModelForm):
         for v in vegetables.keys():
             a.append(v)
         fields = a.copy()
+
