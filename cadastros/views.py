@@ -156,13 +156,20 @@ class VerduraTotalList(LoginRequiredMixin, ListView):
         return self.object_list
 
 
+listafinal = dict()
+for k, v in FinalModel.verdurafinal.items():
+    if v > 0:
+        listafinal[k] = v
+
 
 
 class FinalList(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
     model = FinalModel
     template_name = 'cadastros/listas/final.html'
-
-    def get_queryset(self):          
-        self.object_list = FinalModel.verdurafinal
+    def get_queryset(self):   
+        self.object_list = listafinal
         return self.object_list
+
+        
+        

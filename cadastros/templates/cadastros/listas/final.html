@@ -10,13 +10,17 @@
 
 <h2 style="font-weight: bold; color: rgb(12, 104, 12);">Listas de Verduras - FINAL</h2>
 <hr>
-{% for nomes, vegetables in object_list.items %}
+{% for nome, vegetables in object_list.items %}
 <table class="table table-striped">
-    <tr>
-        <th>{{nomes}}: {{ vegetables }}</th>
-    </tr>
-    
-    
+    {% if nome in 'BatataCebolaCenouraTomate' %}
+        <tr>
+            <th>{{ nome }}: {{ vegetables }} Kg</th>
+        </tr>
+    {% else %}
+        <tr>
+            <th>{{ nome }}: {{ vegetables }}</th>
+        </tr>
+    {%endif%}
 
 
     
