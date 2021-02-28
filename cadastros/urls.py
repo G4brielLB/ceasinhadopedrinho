@@ -25,7 +25,7 @@ urlpatterns = [
     path('listar/campos/', CampoList.as_view(), name='listar-campos'),
     path('listar/verduras/user', VerduraList.as_view(), name='listar-verduras'),
     path('listar/verduras/', VerduraTotalList.as_view(), name='listar-verduras-total'),
-    path('listar/verduras/final', FinalList.as_view(), name='listas-verduras-final'),
+    path('listar/verduras/final', FinalList.as_view(), name='listar-verduras-final'),
 
 
     #path('endereço/', MinhaView.as_view(), name='nome-da-url')

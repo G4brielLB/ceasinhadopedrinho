@@ -22,3 +22,4 @@ class VerduraForm(forms.ModelForm):
             a.append(v)
         fields = a.copy()
 
+

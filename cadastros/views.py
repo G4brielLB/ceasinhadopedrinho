@@ -2,7 +2,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.views.generic.list import ListView
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Campo, Verdura, to_dict, FinalModel
+from .models import Campo, Verdura, to_dict, FinalModel 
 from .forms import VerduraForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -19,7 +19,8 @@ vegetables = {'abacate': 0, 'abacaxi': 0, 'abobrinha': 0,
               'couve_folha': 0, 'banana': 0,
               'espinafre': 0, 'laranja': 0, 'maca': 0,
               'macaxeira': 0, 'mamao': 0, 'maracuja': 0,
-              'pepino': 0, 'pimenta_de_cheiro': 0, 'pimentao': 0, 'tangerina': 0, 'tomate': 0, 'rucula': 0, 'quiabo': 0}
+              'pepino': 0, 'pimenta_de_cheiro': 0, 'pimentao': 0,
+              'tangerina': 0, 'tomate': 0, 'rucula': 0, 'quiabo': 0}
 
 # Create your views here.
 class CampoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
@@ -39,18 +40,18 @@ class CampoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
         # Depois do super o objeto foi criado
         return url
 
-class CeasaCreate(FormView):
-    template_name = 'cadastros/ceasa.html'
-    form_class = VerduraForm
-    success_url = reverse_lazy('index')
-    def ceasa(self, request):
-        ceasa = {}
-        form = VerduraForm(request.POST or None)
-        if form.is_valid():
-            form.save()
+#class CeasaCreate(FormView):
+    #template_name = 'cadastros/ceasa.html'
+    #form_class = VerduraForm
+    #success_url = reverse_lazy('index')
+    #def ceasa(self, request):
+        #ceasa = {}
+        #form = VerduraForm(request.POST or None)
+        #if form.is_valid():
+            #form.save()
 
-        ceasa['form'] = form
-        return render(request, 'ceasa.html', ceasa)
+        #ceasa['form'] = form
+        #return render(request, 'ceasa.html', ceasa)
 
 class VerduraCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     group_required = u'Família'
@@ -78,7 +79,7 @@ class VerduraCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
             form.save()
 
         ceasa['form'] = form
-        #return render(request, 'ceasa.html', ceasa)'''
+        #return render(request, 'ceasa.html', ceasa)
 
 
 
@@ -144,6 +145,7 @@ class VerduraList(LoginRequiredMixin, ListView):
         self.object_list = Verdura.objects.filter(usuario=self.request.user)
         return self.object_list
 
+
 class VerduraTotalList(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
     model = Verdura
@@ -156,19 +158,29 @@ class VerduraTotalList(LoginRequiredMixin, ListView):
         return self.object_list
 
 
-listafinal = dict()
-for k, v in FinalModel.verdurafinal.items():
-    if v > 0:
-        listafinal[k] = v
+#listafinal = dict()
+#for k, v in FinalModel.verdurafinal.items():
+#    if v > 0:
+#       listafinal[k] = v
 
 
-
+verdurafinal = {'Abacate': 0, 'Abacaxi': 0, 'Abobrinha': 0,
+                'Alface': 0, 'Alho Poró': 0, 'Batata': 0,
+                'Batata Doce': 0, 'Brócolis': 0,
+                'Cabeca de Alho': 0, 'Cebola': 0,
+                'Cebola Roxa': 0, 'Cenoura': 0, 'Côco': 0,
+                'Cheiro Verde': 0, 'Chuchu': 0, 'Couve Flor': 0,
+                'Couve Folha': 0, 'Dúzia de Banana': 0,
+                'Espinafre': 0, 'Laranja': 0, 'Maçã': 0,
+                'Macaxeira': 0, 'Mamão': 0, 'Maracujá': 0,
+                'Pepino': 0, 'Pimenta de Cheiro': 0, 'Pimentão': 0,'Tangerina': 0, 'Tomate': 0, 'Rúcula': 0, 'Quiabo': 0}
+                
 class FinalList(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
-    model = FinalModel
+    finalverdura = FinalModel(verdurafinal)
     template_name = 'cadastros/listas/final.html'
     def get_queryset(self):   
-        self.object_list = listafinal
+        self.object_list = self.finalverdura.resultado
         return self.object_list
 
         

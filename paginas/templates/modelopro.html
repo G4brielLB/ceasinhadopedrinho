@@ -60,8 +60,13 @@ awesome/4.7.0/css/font-awesome.min.css">
           </li>
           {% if request.user.is_authenticated%}
           <li class="nav-item active">
-            <a class="nav-link" href="{% url 'listar-verduras-total' %}" style="font-family: sans-serif;">
+            <a class="nav-link" href="{% url 'listar-verduras-total' %}" style="font-family: sans-serif;" >
               Listas
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'listar-verduras-final' %}" style="font-family: sans-serif; font-weight: bold; color: darkgreen;">
+              Lista Final
             </a>
           </li>
           {%endif%}
